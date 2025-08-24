@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CharacterFolder - Create character</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body>
+
+    <div style="margin-top: 1em;" class="container d-flex justify-content-center flex-row">
+        <h2 class="text-nowrap">
+            <span>Character creation</span>
+        </h2>
+    </div>
+
+    <div class="border-top border-dark my-0"></div>
+
+    <div class="container d-flex justify-content-center">
+        <div id="loginbox" style="margin-top: 2em;" class="col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-2">
+            <div class="card border-info">
+                <div class="card-header bg-info">
+                    <span>Create new character</span>
+                </div>
+
+                <div class="card-body ">
+                    <div class="card-text">
+                        <form action="#" th:action="@{/processCreationForm}" th:object="${character}" method="post" class="form-horizontal">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Character's name:</span>
+                                <input th:field="*{name}" type="text" class="form-control" placeholder="Enter character's name">
+                                <span class="input-group-text">Character's class:</span>
+                                <select th:field="*{className}" class="form-select">
+                                    <option selected th:value="none">Choose...</option>
+                                    <option th:each="class : ${classes}" th:value="${class}" th:text="${class}"></option>
+                                </select>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="desc-counter">Character's description (256/256):</span>
+                                <textarea th:field="*{description}" class="form-control" maxlength="256" id="description"></textarea>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="back-counter">Character's backstory (256/256):</span>
+                                <textarea th:field="*{backstory}" class="form-control" maxlength="256" id="backstory"></textarea>
+                            </div>
+
+                            <div class="input-group mb-3" id="statsGroup">
+                                <span class="input-group-text ms-3">STR</span>
+                                <input th:field="*{stats.strength}" type="text" class="form-control me-3" readonly>
+
+                                <span class="input-group-text ms-3">DEX</span>
+                                <input th:field="*{stats.dexterity}" type="text" class="form-control me-3" readonly>
+
+                                <span class="input-group-text ms-3">CON</span>
+                                <input th:field="*{stats.constitution}" type="text" class="form-control me-3" readonly>
+
+                                <span class="input-group-text ms-3">INT</span>
+                                <input th:field="*{stats.intelligence}" type="text" class="form-control me-3" readonly>
+
+                                <span class="input-group-text ms-3">WIS</span>
+                                <input th:field="*{stats.wisdom}" type="text" class="form-control me-3" readonly>
+
+                                <span class="input-group-text ms-3">CHA</span>
+                                <input th:field="*{stats.charisma}" type="text" class="form-control me-3" readonly>
+                            </div>
+
+                            <div class="form-group d-flex justify-content-center mt-2">
+                                <div class="controls d-grid gap-2 col-2 mx-auto">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="generateStats('statsGroup')">Roll stats</button>
+                                </div>
+                            </div>
+
+                            <div class="input-group mt-3 d-block text-center" th:if="${#fields.hasErrors()}">
+                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger d-block"></span>
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger d-block"></span>
+                                <span th:if="${#fields.hasErrors('backstory')}" th:errors="*{backstory}" class="text-danger d-block"></span>
+                                <span th:if="${#fields.hasErrors('className')}" th:errors="*{className}" class="text-danger d-block"></span>
+                                <span th:if="${#fields.hasErrors('stats.charisma')}" th:errors="*{stats.charisma}" class="text-danger d-block"></span>
+                            </div>
+
+                            <div class="form-group d-flex justify-content-center mt-3">
+                                <div class="controls d-grid gap-2 col-4 mx-auto">
+                                    <button type="submit" class="btn btn-success">Create character</button>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="#" th:action="@{/}" method="get">
+                            <div class="form-group d-flex justify-content-center mt-4">
+                                <div class="controls d-grid gap-2 col-4 mx-auto">
+                                    <button type="submit" class="btn btn-primary">Return</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{js/stats.js}"></script>
+    <script th:src="@{js/textCounter.js}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            setupCounter("description", "desc-counter", 256);
+            setupCounter("backstory", "back-counter", 256);
+        });
+    </script>
+
+</body>
+</html>
