@@ -69,7 +69,7 @@ public class CharacterController {
             return "characters/creation-form";
         }
 
-        return "redirect:/";
+        return "redirect:/viewCharacters";
     }
 
 }
