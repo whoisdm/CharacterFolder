@@ -7,6 +7,8 @@ import com.whoisdm.characterFolder.model.characters.CharacterStats;
 import com.whoisdm.characterFolder.model.characters.FolderCharacter;
 import com.whoisdm.characterFolder.model.characters.RegistrationCharacter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +30,11 @@ public class CharacterServiceImpl implements CharacterService {
     @Override
     public List<FolderCharacter> findAllByUsername(String username) {
         return characterRepository.findAllByUsername(username);
+    }
+
+    @Override
+    public Page<FolderCharacter> findAllByUsername(String username, Pageable pageable) {
+        return characterRepository.findAllByUsername(username, pageable);
     }
 
     @Transactional

@@ -6,6 +6,8 @@ import com.whoisdm.characterFolder.service.characters.CharacterService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,10 +40,10 @@ public class CharacterController {
     }
 
     @GetMapping("/viewCharacters")
-    public String viewCharacters(Model model) {
+    public String viewCharacters(Model model, @RequestParam(defaultValue = "0") int page) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        List<FolderCharacter> characters = characterService.findAllByUsername(username);
+        Page<FolderCharacter> characters = characterService.findAllByUsername(username, PageRequest.of(page, 10));
         model.addAttribute("characters", characters);
         return "characters/characters-view";
     }
