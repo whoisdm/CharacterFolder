@@ -51,24 +51,19 @@
 
     <nav class="mt-5">
         <ul class="pagination justify-content-center">
-
             <li class="page-item" th:classappend="${characters.first} ? 'disabled'">
                 <a class="page-link" th:href="@{/viewCharacters(page=${characters.number - 1})}">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-
-
             <li class="page-item" th:each="page : ${#numbers.sequence(0, characters.totalPages - 1)}" th:classappend="${page == characters.number} ? 'active'">
                 <a class="page-link" th:href="@{/viewCharacters(page=${page})}" th:text="${page + 1}"></a>
             </li>
-
             <li class="page-item" th:classappend="${characters.last} ? 'disabled'">
                 <a class="page-link" th:href="@{/viewCharacters(page=${characters.number + 1})}">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
-
         </ul>
     </nav>
 

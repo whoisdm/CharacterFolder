@@ -21,6 +21,7 @@ import java.util.List;
 public class CharacterController {
 
     private final List<String> CLASSES = List.of("artificer,barbarian,bard,cleric,druid,fighter,monk,paladin,ranger,rogue,sorcerer,warlock,wizard".split(","));
+    private final int PAGE_SIZE = 10;
     private final CharacterService characterService;
 
     @Autowired
@@ -43,7 +44,7 @@ public class CharacterController {
     public String viewCharacters(Model model, @RequestParam(defaultValue = "0") int page) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        Page<FolderCharacter> characters = characterService.findAllByUsername(username, PageRequest.of(page, 10));
+        Page<FolderCharacter> characters = characterService.findAllByUsername(username, PageRequest.of(page, PAGE_SIZE));
         model.addAttribute("characters", characters);
         return "characters/characters-view";
     }

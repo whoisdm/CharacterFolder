@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,11 +24,6 @@ public class CharacterServiceImpl implements CharacterService {
     public CharacterServiceImpl(CharacterRepository characterRepository, ClassRepository classRepository) {
         this.characterRepository = characterRepository;
         this.classRepository = classRepository;
-    }
-
-    @Override
-    public List<FolderCharacter> findAllByUsername(String username) {
-        return characterRepository.findAllByUsername(username);
     }
 
     @Override
