@@ -30,9 +30,9 @@
                 <tbody>
                     <tr th:each="character : ${characters.content}">
                         <td th:text="${character.name}"></td>
-                        <td th:text="${character.characterClass.className}"></td>
-                        <td th:text="${character.characterClass.classType}"></td>
-                        <td th:text="${character.characterClass.classRole}" ></td>
+                        <td th:text="${#strings.capitalize(character.characterClass.className)}"></td>
+                        <td th:text="${#strings.capitalize(character.characterClass.classType)}"></td>
+                        <td th:text="${#strings.capitalize(character.characterClass.classRole)}" ></td>
                     </tr>
                 </tbody>
             </table>
