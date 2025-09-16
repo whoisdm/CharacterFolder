@@ -28,6 +28,7 @@ public class SecurityConfig {
                         .requestMatchers("/showCreationForm").hasRole("USER")
                         .requestMatchers("/processCreationForm").hasRole("USER")
                         .requestMatchers("/viewCharacters").hasRole("USER")
+                        .requestMatchers("/showCharacterDetails").hasRole("USER")
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/showRegistration").permitAll().requestMatchers("/processRegistration").permitAll()
                         .anyRequest().authenticated())

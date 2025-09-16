@@ -75,4 +75,11 @@ public class CharacterController {
         return "redirect:/viewCharacters";
     }
 
+    @GetMapping("/showCharacterDetails")
+    public String showCharacterDetails(Model model, @RequestParam("id") int id) {
+        FolderCharacter folderCharacter = characterService.findCharacterById(id);
+        model.addAttribute("character", folderCharacter);
+        return "characters/character-details";
+    }
+
 }

@@ -9,4 +9,5 @@ import org.springframework.data.domain.Pageable;
 public interface CharacterService {
     Page<FolderCharacter> findAllByUsername(String username, Pageable pageable);
     FolderCharacter saveCharacter(RegistrationCharacter regCharacter, String username);
+    FolderCharacter findCharacterById(int id);
 }

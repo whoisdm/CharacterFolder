@@ -20,11 +20,12 @@
         <div class="col-10 mx-auto">
             <table class="table table-bordered table-hover">
                 <thead>
-                    <tr class="table-info">
+                    <tr class="table-info text-center">
                         <th>Name</th>
                         <th>Class</th>
                         <th>Type</th>
                         <th>Role</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,20 +34,17 @@
                         <td th:text="${#strings.capitalize(character.characterClass.className)}"></td>
                         <td th:text="${#strings.capitalize(character.characterClass.classType)}"></td>
                         <td th:text="${#strings.capitalize(character.characterClass.classRole)}" ></td>
+                        <td>
+                            <div class="form-group d-flex justify-content-center">
+                                <div class="controls d-grid gap-2 col-4 mx-auto">
+                                    <a th:href="@{/showCharacterDetails(id=${character.id})}" class="btn btn-primary btm-sm">Details</a>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>
-
-    <div class="container justify-content-center mt-5">
-        <form action="#" th:action="@{/}" method="get">
-            <div class="form-group d-flex justify-content-center">
-                <div class="controls d-grid gap-2 col-2 mx-auto">
-                    <button type="submit" class="btn btn-primary">Return</button>
-                </div>
-            </div>
-        </form>
     </div>
 
     <nav class="mt-5">
@@ -66,6 +64,16 @@
             </li>
         </ul>
     </nav>
+
+    <div class="container justify-content-center mt-5">
+        <form action="#" th:action="@{/}" method="get">
+            <div class="form-group d-flex justify-content-center">
+                <div class="controls d-grid gap-2 col-2 mx-auto">
+                    <button type="submit" class="btn btn-primary">Return</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
 </body>
 </html>

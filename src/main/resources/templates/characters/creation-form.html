@@ -38,12 +38,12 @@
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="desc-counter">Character's description (256/256):</span>
-                                <textarea th:field="*{description}" class="form-control" maxlength="256" id="description"></textarea>
+                                <textarea th:field="*{description}" class="form-control" maxlength="512" id="description"></textarea>
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="back-counter">Character's backstory (256/256):</span>
-                                <textarea th:field="*{backstory}" class="form-control" maxlength="256" id="backstory"></textarea>
+                                <textarea th:field="*{backstory}" class="form-control" maxlength="512" id="backstory"></textarea>
                             </div>
 
                             <div class="input-group mb-3" id="statsGroup">
@@ -103,8 +103,8 @@
     <script th:src="@{js/textCounter.js}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            setupCounter("description", "desc-counter", 256);
-            setupCounter("backstory", "back-counter", 256);
+            setupCounter("description", "desc-counter", 512);
+            setupCounter("backstory", "back-counter", 512);
         });
     </script>
 

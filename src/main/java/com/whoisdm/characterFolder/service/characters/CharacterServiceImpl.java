@@ -53,4 +53,9 @@ public class CharacterServiceImpl implements CharacterService {
         Optional<CharacterClass> characterClass = classRepository.findById(name);
         return characterClass.orElse(null);
     }
+
+    @Override
+    public FolderCharacter findCharacterById(int id) {
+        return characterRepository.findById(id).orElse(null);
+    }
 }
